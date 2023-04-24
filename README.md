@@ -27,3 +27,7 @@ Then access the frontend app from `http://localhost`
 ```bash
 $ docker-compose down
 ```
+
+## View Swagger API documentation
+
+To view the Swagger API documentation, go to `http://localhost:5000`
