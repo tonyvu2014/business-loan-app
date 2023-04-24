@@ -1,0 +1,1 @@
+export const DEFAULT_PRE_ASSESSMENT_VALUE = 20;
