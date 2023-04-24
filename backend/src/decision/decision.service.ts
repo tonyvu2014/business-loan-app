@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { DecisionRequestDTO } from './dto/decision-request.dto';
 import { OutcomeRequestDTO } from './dto/outcome-request.dto';
-import { AccountingService } from 'src/accounting/accounting.service';
+import { AccountingService } from '../accounting/accounting.service';
 import { ProfitOrLossSummaryDTO } from 'src/accounting/dto/profit-or-loss-summary.dto';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 import { InjectRepository } from '@nestjs/typeorm';
-import { LoanApplication } from 'src/models/LoanApplication';
+import { LoanApplication } from '../models/LoanApplication';
 import { Repository } from 'typeorm';
-import { DecisionOutcome } from 'src/common/constant';
+import { DecisionOutcome } from '../common/constant';
 
 @Injectable()
 export class DecisionService {

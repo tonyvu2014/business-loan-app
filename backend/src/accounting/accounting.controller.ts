@@ -1,7 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { AccountingService } from './accounting.service';
 import { BalanceSheetDTO } from './dto/balance-sheet.dto';
-import { AccountingProvider } from 'src/models/AccountingProvider';
+import { AccountingProvider } from '../models/AccountingProvider';
 import { ApiQuery } from '@nestjs/swagger';
 
 @Controller('accounting')

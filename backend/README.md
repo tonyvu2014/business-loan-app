@@ -15,7 +15,7 @@ Business Loan Application API buit with [Nest](https://github.com/nestjs/nest) f
 - Create a new database and new user who has all privileges on the database.
 - Initilize the database by running the 2 scripts: `ddl.sql` and `seed.sql` in the the [database](database) folder in that order.
 
-## Set environment variables for local
+## Set environment variables for local development
 
 - Create a `.env` in the project root folder
 - Copy the content of `.env.example` to `.env` file

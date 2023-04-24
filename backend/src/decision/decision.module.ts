@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { DecisionService } from './decision.service';
 import { DecisionController } from './decision.controller';
-import { AccountingModule } from 'src/accounting/accounting.module';
+import { AccountingModule } from '../accounting/accounting.module';
 import { HttpModule } from '@nestjs/axios';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { LoanApplication } from 'src/models/LoanApplication';
+import { LoanApplication } from '../models/LoanApplication';
 
 @Module({
   imports: [

@@ -4,7 +4,7 @@ Business Loan Application frontend app.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Set environment variables for local
+## Set environment variables for local development
 
 - Create a `.env` in the project root folder
 - Copy the content of `.env.example` to `.env` file

@@ -3,7 +3,7 @@ import { AccountingService } from './accounting.service';
 import { AccountingController } from './accounting.controller';
 import { HttpModule } from '@nestjs/axios';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AccountingProvider } from 'src/models/AccountingProvider';
+import { AccountingProvider } from '../models/AccountingProvider';
 
 @Module({
   imports: [HttpModule, TypeOrmModule.forFeature([AccountingProvider])],

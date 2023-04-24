@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { AccountingProvider } from 'src/models/AccountingProvider';
+import { AccountingProvider } from '../models/AccountingProvider';
 import { Repository } from 'typeorm';
 import { Executor } from './providers/executor.interface';
 import { XeroExecutor } from './providers/xero.executor';
 import { MYOBExecutor } from './providers/myob.executor';
 import { BalanceSheetDTO } from './dto/balance-sheet.dto';
-import { DEFAULT_PRE_ASSESSMENT_VALUE } from 'src/common/constant';
+import { DEFAULT_PRE_ASSESSMENT_VALUE } from '../common/constant';
 import { ProfitOrLossSummaryDTO } from './dto/profit-or-loss-summary.dto';
 import { HttpService } from '@nestjs/axios';
 

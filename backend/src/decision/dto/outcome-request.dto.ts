@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { BalanceSheetDTO } from 'src/accounting/dto/balance-sheet.dto';
+import { BalanceSheetDTO } from '../../accounting/dto/balance-sheet.dto';
 
 export class OutcomeRequestDTO {
   @ApiProperty()
