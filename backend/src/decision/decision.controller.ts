@@ -9,7 +9,9 @@ export class DecisionController {
 
   @Post('outcome')
   @ApiBody({ type: OutcomeRequestDTO })
-  requestOutcome(@Body() request: OutcomeRequestDTO): { outcome: string } {
-    return { outcome: this.decisionService.requestOutcome(request) };
+  async requestOutcome(
+    @Body() request: OutcomeRequestDTO,
+  ): Promise<{ outcome: string }> {
+    return { outcome: await this.decisionService.requestOutcome(request) };
   }
 }

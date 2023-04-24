@@ -1,14 +1,13 @@
-import { BalanceSheetDTO } from 'src/accounting/dto/balance-sheet.dto';
+import { BalanceSheetDTO } from 'src/dto/balance-sheet.dto';
 
 // Generating random balance sheet data
 export const generateRandomBalanceSheet = (): BalanceSheetDTO[] => {
-  const randomLookbackMonths: number = Math.floor(Math.random() * 36);
-
-  const current: Date = new Date();
+  const numberOfMonths: number = Math.floor(Math.random() * 36);
 
   const sheet: BalanceSheetDTO[] = [];
 
-  for (let i = 0; i <= randomLookbackMonths; i++) {
+  for (let i = 0; i <= numberOfMonths; i++) {
+    const current: Date = new Date();
     current.setMonth(current.getMonth() - i);
     const year: number = current.getFullYear();
     const month: number = current.getMonth();
@@ -28,8 +27,3 @@ export const generateRandomBalanceSheet = (): BalanceSheetDTO[] => {
 
   return sheet;
 };
-
-export enum DecisionOutcome {
-  APPROVED = 'APPROVED',
-  REJECTED = 'REJECTED',
-}

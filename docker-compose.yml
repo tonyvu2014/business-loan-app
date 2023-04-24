@@ -27,15 +27,44 @@ services:
     ports:
       - 5000:5000
     links:
-      - db:db
+      - db
+      - bookkeeper
+      - decision-engine
     environment:
       - DB_HOST=db
       - DB_PORT=3307
       - DB_USER=demyst_admin
       - DB_PASS=Master!123
       - DB_NAME=demyst
+      - MYOB_GET_BALANCE_SHEET_URL=http://bookkeeper:5001/balance-sheet
+      - XERO_GET_BALANCE_SHEET_URL=http://bookkeeper:5001/balance-sheet
+      - DECISION_ENGINE_OUTCOME_URL=http://decision-engine:5002/outcome
     depends_on:
       - db
+      - bookkeeper
+      - decision-engine
+    networks:
+      - webnet
+  
+  bookkeeper:
+    build:
+      context: ./accounting-app
+      dockerfile: Dockerfile
+    container_name: demyst-bookkeeper
+    restart: unless-stopped
+    ports:
+      - 5001:5001
+    networks:
+      - webnet
+
+  decision-engine:
+    build:
+      context: ./decision-engine-app
+      dockerfile: Dockerfile
+    container_name: demyst-decision-engine
+    restart: unless-stopped
+    ports:
+      - 5002:5002
     networks:
       - webnet
 

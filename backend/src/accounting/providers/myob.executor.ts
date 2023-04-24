@@ -1,11 +1,18 @@
-import { generateRandomBalanceSheet } from 'src/common/helper';
+import { firstValueFrom } from 'rxjs';
 import { BalanceSheetDTO } from '../dto/balance-sheet.dto';
 import { Executor } from './executor.interface';
+import { HttpService } from '@nestjs/axios';
 
 // Integration with MYOB as the accouting provider
 export class MYOBExecutor implements Executor {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  constructor(private readonly httpService: HttpService) {}
+
   async fetchBalanceSheet(abn: string): Promise<BalanceSheetDTO[]> {
-    return Promise.resolve(generateRandomBalanceSheet());
+    const url = process.env.MYOB_GET_BALANCE_SHEET_URL;
+    const { data } = await firstValueFrom(
+      this.httpService.get<BalanceSheetDTO[]>(url, { params: { abn } }),
+    );
+
+    return data;
   }
 }

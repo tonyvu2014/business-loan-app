@@ -2,9 +2,16 @@ import { Module } from '@nestjs/common';
 import { DecisionService } from './decision.service';
 import { DecisionController } from './decision.controller';
 import { AccountingModule } from 'src/accounting/accounting.module';
+import { HttpModule } from '@nestjs/axios';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { LoanApplication } from 'src/models/LoanApplication';
 
 @Module({
-  imports: [AccountingModule],
+  imports: [
+    HttpModule,
+    AccountingModule,
+    TypeOrmModule.forFeature([LoanApplication]),
+  ],
   providers: [DecisionService],
   controllers: [DecisionController],
 })

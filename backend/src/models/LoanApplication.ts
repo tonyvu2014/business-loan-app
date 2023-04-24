@@ -12,7 +12,7 @@ export class LoanApplication {
   businessAbn: string;
 
   @Column('decimal', { name: 'loan_amount', precision: 15, scale: 2 })
-  loanAmount: string;
+  loanAmount: number;
 
   @Column('enum', {
     name: 'status',

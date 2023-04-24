@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Form, Button, Alert, Card, Table } from 'react-bootstrap';
+import { Form, Button, Alert } from 'react-bootstrap';
 import {
   YEAR_ESTABLISHED_RANGE,
   STAGE,
   LOAN_OUTCOME,
 } from '../common/constant';
 import axios from 'axios';
+import BalanceSheetCard from '../components/BalanceSheet';
 
 const ApplicationForm = () => {
   const [formData, setFormData] = useState({});
@@ -20,13 +21,11 @@ const ApplicationForm = () => {
   useEffect(() => {
     // eslint-disable-next-line no-undef
     const url = `${process.env.REACT_APP_API_URL}/accounting/providers`;
-    console.log('url', url);
     axios
       .get(url)
       .then((response) => {
         const { data } = response;
         setAccountingProviders(data);
-        console.log('accountingProviders', accountingProviders);
       })
       .catch((error) => {
         console.log(error);
@@ -77,7 +76,6 @@ const ApplicationForm = () => {
       .get(url, { params: { abn, provider } })
       .then((response) => {
         const { data } = response;
-        console.log(data);
         return data;
       });
 
@@ -89,7 +87,6 @@ const ApplicationForm = () => {
     const url = `${process.env.REACT_APP_API_URL}/decision/outcome`;
     const outcome = await axios.post(url, assessmentData).then((response) => {
       const { data } = response;
-      console.log(data);
       return data;
     });
 
@@ -104,7 +101,6 @@ const ApplicationForm = () => {
         setFormErrors(errors);
         return;
       }
-      console.log('Form data', formData);
       const { businessABN, accountingProvider } = formData;
       try {
         const balanceSheet = await getBalanceSheet(
@@ -145,6 +141,7 @@ const ApplicationForm = () => {
         abn: formData.businessABN,
         yearEstablished: formData.yearEstablished,
         loanAmount: formData.loanAmount,
+        accountingProvider: formData.accountingProvider,
         balanceSheet,
       };
       try {
@@ -158,7 +155,7 @@ const ApplicationForm = () => {
           });
         } else {
           setFormMessage({
-            type: 'info',
+            type: 'warning',
             message: "We're sorry your loan application is rejected",
           });
         }
@@ -257,26 +254,7 @@ const ApplicationForm = () => {
         </Form.Control.Feedback>
       </Form.Group>
       {stage == STAGE.REVIEWING && (
-        <Card className="my-4 fs-6">
-          <Table>
-            <thead>
-              <tr>
-                <th>Year</th>
-                <th>Month</th>
-                <th>Profit/Loss ($)</th>
-                <th>Assets Value ($)</th>
-              </tr>
-            </thead>
-            {balanceSheet.map((row, i) => (
-              <tr key={i}>
-                <td>{row.year}</td>
-                <td>{row.month}</td>
-                <td>{row.profitOrLoss}</td>
-                <td>{row.assetsValue}</td>
-              </tr>
-            ))}
-          </Table>
-        </Card>
+        <BalanceSheetCard balanceSheet={balanceSheet} />
       )}
       <Form.Group className="mt-3">
         {stage == STAGE.INITIAL && (

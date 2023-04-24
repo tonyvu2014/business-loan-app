@@ -14,6 +14,9 @@ export class OutcomeRequestDTO {
   @ApiProperty()
   loanAmount: number;
 
+  @ApiProperty()
+  accountingProvider: string;
+
   @ApiProperty({
     isArray: true,
     type: BalanceSheetDTO,

@@ -8,12 +8,14 @@ import { MYOBExecutor } from './providers/myob.executor';
 import { BalanceSheetDTO } from './dto/balance-sheet.dto';
 import { DEFAULT_PRE_ASSESSMENT_VALUE } from 'src/common/constant';
 import { ProfitOrLossSummaryDTO } from './dto/profit-or-loss-summary.dto';
+import { HttpService } from '@nestjs/axios';
 
 @Injectable()
 export class AccountingService {
   constructor(
     @InjectRepository(AccountingProvider)
     private readonly accountingProviderRepository: Repository<AccountingProvider>,
+    private readonly httpService: HttpService,
   ) {}
 
   getProviders(): Promise<AccountingProvider[]> {
@@ -23,9 +25,9 @@ export class AccountingService {
   getProviderExecutor(provider: string): Executor {
     switch (provider.toLowerCase()) {
       case 'myob':
-        return new MYOBExecutor();
+        return new MYOBExecutor(this.httpService);
       case 'xero':
-        return new XeroExecutor();
+        return new XeroExecutor(this.httpService);
       default:
         throw new Error('Provider not found');
     }
@@ -69,8 +71,8 @@ export class AccountingService {
     let last12MonthsProfitOrLoss = 0;
     let last12MonthsAssetsValue = 0;
 
-    const current: Date = new Date();
     for (let i = 0; i <= 11; i++) {
+      const current: Date = new Date();
       current.setMonth(current.getMonth() - i);
       const year: number = current.getFullYear();
       const month: number = current.getMonth();
@@ -79,7 +81,7 @@ export class AccountingService {
       last12MonthsAssetsValue += assetsValueByMonth[key] || 0;
     }
 
-    if (last12MonthsProfitOrLoss < 0) {
+    if (last12MonthsProfitOrLoss <= 0) {
       return DEFAULT_PRE_ASSESSMENT_VALUE;
     }
 
@@ -89,6 +91,8 @@ export class AccountingService {
       return 100;
     }
 
-    return (averageAssetsValue / loanAmount) * 100;
+    const preAssessment = (averageAssetsValue / loanAmount) * 100;
+
+    return Number(preAssessment.toFixed(2));
   }
 }

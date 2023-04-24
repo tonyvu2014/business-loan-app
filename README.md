@@ -4,6 +4,8 @@ Business Loan Application App Suite. The suite includes the following app:
 
 - frontend: Frontend app built with ReactJS
 - backend: Backend API app built with NestJS
+- accounting-app: A simulator of a third-party accounting provider app which is used to fetch balance sheet. This simulator will return a random balance sheet's numbers.
+- decision-engine-app: A simulator of a third-party decision engine app which is used to make the final loan application outcome. This simulator will return outcome as random.
 
 The app allow business to apply for loan, retrieve company's balance sheet from a third-party accounting provider, review and submit the loan application. A third-party decision engine will response with either approving or rejecting the loan.
 
@@ -31,3 +33,13 @@ $ docker-compose down
 ## View Swagger API documentation
 
 To view the Swagger API documentation, go to `http://localhost:5000`
+
+## Production build
+
+In order to build the backend and frontend for production. Make sure to set the correct environment variables. The backend's environment variables should point to the production DB, production accounting providers' urls and production decision engine's url.
+
+## Areas for improvement
+
+- Add authentication for all API endpoints
+- Loan application form should usually include more business information like address, industry,...
+- Validation for ABN number
