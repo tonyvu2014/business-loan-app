@@ -8,12 +8,12 @@ Business Loan Application App Suite. The suite includes the following app:
 - decision-engine-app: A simulator of a third-party decision engine app which is used to make the final loan application outcome. This simulator will return outcome as random.
 - a database (MySQL is used) for storing accounting providers and loan application data.
 
-The app allow business to apply for loan, retrieve company's balance sheet from a third-party accounting provider, review and submit the loan application. It then compute the profit or loss by year summary and a preassessment value based on rules as follows:
+The app allow businesses to apply for loan, retrieve company's balance sheet from a third-party accounting provider, review and submit the loan application. It then computes the profit or loss by year summary and a pre-assessment value based on rules as follows:
 
 - If a business has made a profit in the last 12 months. The final value to be sent with a field "preAssessment": "60" which means the Loan is favored to be approved 60% of the requested value. If the average asset value across 12 months is greater than the loan amount then "preAssessment": "100"
 - Default value to be used 20
 
-The preassessment value will be sent to a third-party decision engine for the final outcome. The logic for application summarization and preAssessment value computation is in [AccountingService](/backend/src/accounting/accounting.service.ts)
+The pre-assessment value will be sent to a third-party decision engine for the final outcome. The logic for application summarization and preAssessment value computation is in [AccountingService](/backend/src/accounting/accounting.service.ts)
 The third-party decision engine will response with either approving or rejecting the loan.
 
 ## Setup, test and run the apps locally
