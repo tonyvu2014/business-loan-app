@@ -18,7 +18,7 @@ The third-party decision engine will response with either approving or rejecting
 
 ## Run the apps locally
 
-- To setup run the backend API: please refer to [this](backend/README.md)
+- To setup and run the backend API: please refer to [this](backend/README.md)
 - To setup and run frontend app: please refer to [this](frontend/README.md)
 
 ## Run with docker-compose
