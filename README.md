@@ -2,8 +2,8 @@
 
 Business Loan Application App Suite. The suite includes the following app:
 
-- frontend: Frontend app built with ReactJS
-- backend: Backend API app built with NestJS
+- frontend: Frontend app built with ReactJS in Javascript
+- backend: Backend API app built with NestJS in Typescript
 - accounting-app: A simulator of a third-party accounting provider app which is used to fetch balance sheet. This simulator will return a random balance sheet's numbers.
 - decision-engine-app: A simulator of a third-party decision engine app which is used to make the final loan application outcome. This simulator will return outcome as random.
 - a database (MySQL is used) for storing accounting providers and loan application data.
