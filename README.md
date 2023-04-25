@@ -16,10 +16,12 @@ The app allow business to apply for loan, retrieve company's balance sheet from 
 The preassessment value will be sent to a third-party decision engine for the final outcome. The logic for application summarization and preAssessment value computation is in [AccountingService](/backend/src/accounting/accounting.service.ts)
 The third-party decision engine will response with either approving or rejecting the loan.
 
-## Run the apps locally
+## Setup, test and run the apps locally
 
-- To setup and run the backend API: please refer to [this](backend/README.md)
-- To setup and run frontend app: please refer to [this](frontend/README.md)
+To read about how to setup, run tests and run the apps, please see the corresponding README file:
+
+- Backend API: please refer to [this](backend/README.md)
+- Frontend app: please refer to [this](frontend/README.md)
 
 ## Run with docker-compose
 
