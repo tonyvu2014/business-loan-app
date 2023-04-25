@@ -71,7 +71,7 @@ export class AccountingService {
     let last12MonthsProfitOrLoss = 0;
     let last12MonthsAssetsValue = 0;
 
-    for (let i = 0; i <= 11; i++) {
+    for (let i = 1; i <= 12; i++) {
       const current: Date = new Date();
       current.setMonth(current.getMonth() - i);
       const year: number = current.getFullYear();
